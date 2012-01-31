@@ -1,0 +1,22 @@
+{  
+  "name": "什么值得买",  
+  "version": "0.0.1",  
+  "description": "什么值得买(www.smzdm.com)chrome扩展", 
+  "background_page": "background.html",
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png"
+  },
+  "permissions": [
+    "http://localhost/*",
+    "tabs",
+    "contextMenus",
+    "notifications"
+  ],
+  "browser_action": {  
+    "default_icon": "icon.png" ,
+    "default_title": "什么值得买",
+    "default_popup": "popup.html"
+  }  
+}
