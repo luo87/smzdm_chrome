@@ -9,7 +9,7 @@
     "48": "icon.png"
   },
   "permissions": [
-    "http://localhost/*",
+    "http://*/*",
     "tabs",
     "contextMenus",
     "notifications"

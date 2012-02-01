@@ -1,5 +1,6 @@
 <html>
 <head>
+<script src="js/jquery-1.7.1.min.js"></script>
 <script>
 // Identifier used to debug the possibility of multiple instances of the
 // extension making requests on behalf of a single user.
@@ -18,8 +19,8 @@ var unreadCount = -1;
 var loadingAnimation = new LoadingAnimation();
 var requestTimerId;
 
-function getGmailUrl() {
-  var url = "https://mail.google.com/";
+function getSmzdmUrl() {
+  var url = "http://www.smzdm.com/";
   if (localStorage.customDomain)
     url += localStorage.customDomain + "/";
   else
@@ -98,15 +99,32 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
 
 
 function init() {
-  canvas = document.getElementById('canvas');
-  loggedInImage = document.getElementById('logged_in');
-  canvasContext = canvas.getContext('2d');
-
-  chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
-  chrome.browserAction.setIcon({path: "gmail_logged_in.png"});
-  loadingAnimation.start();
-
-  startRequest();
+	$.ajax({
+		url: "http://localhost/test/test.php",
+//		url: "http://www.smzdm.com/",
+		timeout: 3000,
+		beforeSend: function(xhr){
+			alert("before send");
+			xhr.setRequestHeader('User-Agent', 'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A405 Safari/7534.48.3');
+		},
+		success: function(data){
+			alert(data);
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert(XMLHttpRequest.status);
+			alert(textStatus);
+		}
+	});
+	alert('2134');
+//  canvas = document.getElementById('canvas');
+//  loggedInImage = document.getElementById('logged_in');
+//  canvasContext = canvas.getContext('2d');
+//
+//  chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
+//  chrome.browserAction.setIcon({path: "gmail_logged_in.png"});
+//  loadingAnimation.start();
+//
+//  startRequest();
 }
 
 function scheduleRequest() {
